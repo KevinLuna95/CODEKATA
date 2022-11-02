@@ -16,5 +16,13 @@ describe('FizzBuzz test resolve',() => {
         expect(res(9)).toEqual("fizz");
         expect(res(12)).toEqual("fizz");
         expect(res(18)).toEqual("fizz");
-    })
+    });
+
+    it('n is multiple of 3 return fizz', () => {
+        expect(res(5)).toEqual("buzz");
+        expect(res(10)).toEqual("buzz");
+        expect(res(20)).toEqual("buzz");
+        expect(res(25)).toEqual("buzz");
+        expect(res(35)).toEqual("buzz");
+    });
 });
