@@ -25,4 +25,12 @@ describe('FizzBuzz test resolve',() => {
         expect(res(25)).toEqual("buzz");
         expect(res(35)).toEqual("buzz");
     });
+
+    it('n is multiple of 3 and 5 return fizzbuzz', () => {
+        expect(res(15)).toEqual("fizz buzz");
+        expect(res(30)).toEqual("fizz buzz");
+        expect(res(45)).toEqual("fizz buzz");
+        expect(res(60)).toEqual("fizz buzz");
+        expect(res(75)).toEqual("fizz buzz");
+    });
 });
