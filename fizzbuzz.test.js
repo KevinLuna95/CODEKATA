@@ -5,9 +5,16 @@ describe('FizzBuzz test resolve',() => {
     it('expected return a string', () => {
         expect(res(1)).toEqual("1");
         expect(res(2)).toEqual("2");
-        expect(res(3)).toEqual("3");
-        expect(res(6)).toEqual("6");
-        expect(res(10)).toEqual("10");
+        expect(res(4)).toEqual("4");
+        expect(res(7)).toEqual("7");
+        expect(res(8)).toEqual("8");
     });
 
+    it('n is multiple of 3 return fizz', () => {
+        expect(res(3)).toEqual("fizz");
+        expect(res(6)).toEqual("fizz");
+        expect(res(9)).toEqual("fizz");
+        expect(res(12)).toEqual("fizz");
+        expect(res(18)).toEqual("fizz");
+    })
 });
