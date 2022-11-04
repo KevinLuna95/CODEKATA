@@ -1,18 +1,24 @@
 function res (n) {
     if (n % 3 === 0 && n % 5 === 0){
-        return "fizz buzz"    
+        return "FizzBuzz"    
     }  
 
     if (n % 3 === 0){
-        return "fizz"    
+        return "Fizz"    
     }  
 
     if (n % 5 === 0){
-        return "buzz"
+        return "Buzz"
 
     } else{
         return `${n}`
     }
 };
+function bucle (){
+    for (let i = 0; i < 200; i++) {
+        console.log(res(i));
+    }
+}
+bucle();
 
 module.exports.res = res;
