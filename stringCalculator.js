@@ -1,8 +1,16 @@
-function calculator (chain) {
-    if (chain == "" || chain == undefined) {
-        return 0;
+try {
+    function calculator (chain) {
+        band = isNaN(chain);
+        if (chain == "" || chain == undefined) {
+            return 0;
+        } else if (band == true){
+            throw new Error("The value is NaN");
+        }
+        return parseInt(chain);
     }
-    return parseInt(chain);
+    console.log(calculator("a"));
+    
+} catch (error) {
+    console.log(error);
 }
-console.log(calculator("2"));
 module.exports.calculator = calculator;
