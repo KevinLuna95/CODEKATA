@@ -19,6 +19,5 @@ function bucle (){
         console.log(res(i));
     }
 }
-bucle();
 
 module.exports.res = res;
