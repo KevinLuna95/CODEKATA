@@ -4,6 +4,7 @@ describe('Calculator string test', () => {
 
     it('expect "0", "n" and result sum string', () => {
         expect(calculator("")).toEqual(0);
+        expect(calculator()).toEqual(0);
     });
 
 });
