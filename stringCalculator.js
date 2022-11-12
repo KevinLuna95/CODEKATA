@@ -1,16 +1,28 @@
 try {
     function calculator (chain) {
-        band = isNaN(chain);
         if (chain == "" || chain == undefined) {
             return 0;
-        } else if (band == true){
-            throw new Error("The value is NaN");
-        }
+        };
+        var bandComma = chain.includes(",");
+        if(bandComma == true) {
+            let numbers = chain.split(/,/);
+            var a = 0, b = 0;
+            for (let i = 0; i < numbers.length; i++) {
+                a = parseInt(numbers[i]);
+                b = a + b
+            }
+            return b;
+        };
+        var bandNaN = isNaN(chain);
+        if (bandNaN == true) {
+            return "The value is NaN"
+        };
         return parseInt(chain);
-    }
-    console.log(calculator("a"));
-    
+    };
+
+    console.log(calculator("2,8,5,6,8"))
+
 } catch (error) {
     console.log(error);
-}
+};
 module.exports.calculator = calculator;
