@@ -3,9 +3,14 @@ try {
         if (chain == "" || chain == undefined) {
             return 0;
         };
-        var bandComma = chain.includes(",");
+        var bandComma = chain.includes("," || "\n");
         if(bandComma == true) {
-            let numbers = chain.split(/,/);
+            var bandSep = chain.search(/,$|\n$/gm);
+            if (bandSep != -1 ){
+                return "Value contains separator at end of text and is not allowed or the declaration is invalid"
+            }
+
+            let numbers = chain.split(/,|\n|\||;|sep/);
             var a = 0, b = 0;
             for (let i = 0; i < numbers.length; i++) {
                 a = parseInt(numbers[i]);
@@ -20,7 +25,7 @@ try {
         return parseInt(chain);
     };
 
-    console.log(calculator("2,8,5,6,8"))
+    console.log(calculator("31,40\n"))
 
 } catch (error) {
     console.log(error);
