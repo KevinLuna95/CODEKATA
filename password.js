@@ -1,6 +1,8 @@
 function validation (pass) {
     if (pass.length >= 8 && /\d+.*\d/.test(pass) == true) {
         return true;
+    } else if (pass.length < 8 && /\d+.*\d/.test(pass) == false){
+        return new Error("Password must be at least 8 characters and must contain at least 2 numbers");
     } else if (pass.length < 8) {
         return new Error("Password must be at least 8 characters");
     } else if (/\d+.*\d/.test(pass) == false) {

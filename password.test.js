@@ -7,12 +7,10 @@ describe ('validator for the password field of a user registration form', () => 
         expect(validation("qwerasdf")).not.toBe(true); //don't have 2 numbers, after is true but now is an error
         expect(validation("as45/*rt651fg")).toBe(true);
         expect(validation("/*-+'()%")).not.toBe(true); //don't have 2 numbers, after is true but now is an error
-        expect(validation("qweras")).toEqual(Error("Password must be at least 8 characters"));
         expect(validation("12345")).toEqual(Error("Password must be at least 8 characters"));
-        expect(validation("/*-+")).toEqual(Error("Password must be at least 8 characters"));
-        expect(validation("d5*")).toEqual(Error("Password must be at least 8 characters"));
+        expect(validation("12345")).toEqual(Error("Password must be at least 8 characters"));
     })
-
+    
     it ('Password contain 2 numbers', () =>{
         expect(validation("12345678")).toBe(true);
         expect(validation("qw7rasd2")).toBe(true);
@@ -23,6 +21,14 @@ describe ('validator for the password field of a user registration form', () => 
         expect(validation("/*-+*/--/")).toEqual(Error("The password must contain at least 2 numbers"));
         expect(validation("eightdigits")).toEqual(Error("The password must contain at least 2 numbers"));
     })
-
+    
+    it('If pasword not have 8 characters and 2 numbers return multiple explains', () => {
+        expect(validation("qweras")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+        expect(validation("/*-+")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+        expect(validation("d5*")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+        expect(validation("6ekl*/")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+        expect(validation("d/*")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+        expect(validation("/red6d")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
+    });
 
 });
