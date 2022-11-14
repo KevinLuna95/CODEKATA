@@ -1,6 +1,6 @@
 Hi! I'm Kevin Luna and this is my code Kata, here I want to show you + 20 test proposed for https://tddmanifesto.com/exercises/
 
-1- First Kata FizzBuzz:
+1- First Kata FizzBuzz: /fizzbuzz.js and /fizzbuzz.test.js
     Requirements
     1. Write a “fizzBuzz” method that accepts a number as input and returns it as a String.
 
@@ -18,7 +18,7 @@ Hi! I'm Kevin Luna and this is my code Kata, here I want to show you + 20 test p
 
 -------------------------------------------------------------------------------------------------
 
-2- Second Kata String calculator (not )
+2- Second Kata String calculator /stringCalculator.js and /stringCalculator.test.js
     Create a simple calculator that takes a String and returns a integer
 
     Signature (pseudo code):
@@ -49,13 +49,19 @@ Hi! I'm Kevin Luna and this is my code Kata, here I want to show you + 20 test p
     “//|\n1|2|3” should return “6”
     “//sep\n2sep5” should return “7”
     “//|\n1|2,3” is invalid and should return an error (or throw an exception) with the message “‘|’ expected but ‘,’ found at position 3.”
-    STOP HERE if you are a beginner. Continue if you could finish the steps (1-5.) within 30 minutes.
 
-    6. Calling add with negative numbers will return the message “Negative number(s) not allowed: <negativeNumbers>”
+Kata 3 – Password input field validation
+    Create a function that can be used as a validator for the password field of a user registration form. The validation function takes a string as an input and returns a validation result. The validation result should contain a boolean indicating if the password is valid or not, and also a field with the possible validation errors.
 
-    “1,-2” is invalid and should return the message “Negative number(s) not allowed: -2”
-    “2,-4,-9” is invalid and should return the message “Negative number(s) not allowed: -4, -9”
-    7. Calling add with multiple errors will return all error messages separated by newlines.
+    Requirements
+    1. The password must be at least 8 characters long. If it is not met, then the following error message should be returned: “Password must be at least 8 characters”
 
-    “//|\n1|2,-3” is invalid and return the message “Negative number(s) not allowed: -3\n’|’ expected but ‘,’ found at position 3.”
-    8. Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+    2. The password must contain at least 2 numbers. If it is not met, then the following error message should be returned: “The password must contain at least 2 numbers”
+
+    3. The validation function should handle multiple validation errors.
+
+    For example, “somepassword” should an error message: “Password must be at least 8 characters\nThe password must contain at least 2 numbers”
+    4. The password must contain at least one capital letter. If it is not met, then the following error message should be returned: “password must contain at least one capital letter”
+
+    5. The password must contain at least one special character. If it is not met, then the following error message should be returned: “password must contain at least one special character”
+
