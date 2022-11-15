@@ -1,52 +1,81 @@
 const { validation } = require('./password.js');
 
 describe ('validator for the password field of a user registration form', () => {
-
-    it ('Password need +8 characters long', () => {
-        expect(validation("12345678")).not.toBe(true);
-        expect(validation("qwerasdf")).not.toBe(true); //don't have 2 numbers, after is true but now is an error
+    
+    it ('Password contain +8 characters long', () => {
+        expect(validation("/45Dlfod")).toBe(true);
+        expect(validation("qwer4*6R6df")).toBe(true);
         expect(validation("As45/*rt651fg")).toBe(true);
-        expect(validation("/*-+'()%")).not.toBe(true); //don't have 2 numbers, after is true but now is an error
-        expect(validation("1234Q")).toEqual(Error("Password must be at least 8 characters"));
-        expect(validation("12W45")).toEqual(Error("Password must be at least 8 characters"));
+        expect(validation("6/*-+'5()%P")).toBe(true);
     })
     
     it ('Password contain 2 numbers', () => {
-        expect(validation("A12345678")).toBe(true);
-        expect(validation("qw7raSd2")).toBe(true);
+        expect(validation("A123*5678")).toBe(true);
+        expect(validation("qw7r*aSd2")).toBe(true);
         expect(validation("as45/*rT651fg")).toBe(true);
-        expect(validation("46qweraTdf")).toEqual(true);
-        expect(validation("qwe5aSdK")).toEqual(Error("The password must contain at least 2 numbers"));
-        expect(validation("1/*-Kldv")).toEqual(Error("The password must contain at least 2 numbers"));
-        expect(validation("/*-+*/--W/")).toEqual(Error("The password must contain at least 2 numbers"));
-        expect(validation("eightDigits")).toEqual(Error("The password must contain at least 2 numbers"));
+        expect(validation("46qwer¡aTdf")).toEqual(true);
     })
 
     it('Password contain one capital letter', () => {
-        expect(validation("Hello199")).toBe(true);
-        expect(validation("mR5l39lK")).toBe(true);
+        expect(validation("Hello199/_")).toBe(true);
+        expect(validation("mR5l39lK/")).toBe(true);
         expect(validation("osp85-KL")).toBe(true);
-        expect(validation("4A4524663")).toBe(true);
+        expect(validation("4A4524*663")).toBe(true);
         expect(validation("/=sd09JS")).toBe(true);
-        expect(validation("6ello199")).toEqual(Error("Password must contain at least one capital letter"));
-        expect(validation("sdadfjh52")).toEqual(Error("Password must contain at least one capital letter"));
-        expect(validation("sdfdf89df")).toEqual(Error("Password must contain at least one capital letter"));
-        expect(validation("/*dfd54df")).toEqual(Error("Password must contain at least one capital letter"));
-        expect(validation("fghfvbn59")).toEqual(Error("Password must contain at least one capital letter"));
+    });
+
+    it('Password contain one special character', () => {
+        expect(validation("Hello/199")).toBe(true);
+        expect(validation("mR5l39-lK")).toBe(true);
+        expect(validation("osp85-KL")).toBe(true);
+        expect(validation("4A452?4663")).toBe(true);
+        expect(validation("/=sd09JS")).toBe(true);
     });
     
     it('If pasword not have all requires return explicit error', () => {
-        expect(validation("qWeras")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
-        expect(validation("/*A+")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
-        expect(validation("D5*")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
-        expect(validation("6eKl*/")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
-        expect(validation("D/*")).toEqual(Error("Password must be at least 8 characters and must contain at least 2 numbers"));
-        expect(validation("/red66")).toEqual(Error("Password must be at least 8 characters and must contain at least 1 capital letter"));
-        expect(validation("8ed6d")).toEqual(Error("Password must be at least 8 characters and must contain at least 1 capital letter"));
-        expect(validation("sdgdfgghf")).toEqual(Error("Password must contain at least 2 numbers and must contain at least 1 capital letter"));
-        expect(validation("9dghnkms")).toEqual(Error("Password must contain at least 2 numbers and must contain at least 1 capital letter"));
-        expect(validation("/fgjd")).toEqual(Error("Password must be at least 8 characters, must contain at least 2 numbers and must contain at least 1 capital letter"));
-        expect(validation("9dfg*d")).toEqual(Error("Password must be at least 8 characters, must contain at least 2 numbers and must contain at least 1 capital letter"));
-    });
+        expect(validation("*99A")).toMatch(/(8 characters)/);
+        expect(validation("%F5l0")).toMatch(/(8 characters)/);
 
+        expect(validation("!Ks0dlof+")).toMatch(/(2 numbers)/);
+        expect(validation("0=edfFaefdc")).toMatch(/(2 numbers)/);
+
+        expect(validation("9dw@sd0s")).toMatch(/(1 capital)/);
+        expect(validation("fds`c59dfv")).toMatch(/(1 capital)/);
+
+        expect(validation("Hsodl8xcf9")).toMatch(/(1 special character)/);
+        expect(validation("dF6g66dgx")).toMatch(/(1 special character)/);
+
+        expect(validation("qWeras")).toMatch(/(8 characters).*\n.*(2 numbers)/);
+        expect(validation("/*A+")).toMatch(/(8 characters).*\n.*(2 numbers)/);
+
+        expect(validation("/re*d66")).toMatch(/(8 characters).*\n.*(1 capital)/);
+        expect(validation("8ed6d")).toMatch(/(8 characters).*\n.*(1 capital)/);
+
+        expect(validation("sdgdfgghf")).toMatch(/(2 numbers).*\n.*(1 capital)/);
+        expect(validation("9dghnkms")).toMatch(/(2 numbers).*\n.*(1 capital)/);
+
+        expect(validation("/fgjd")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 capital)/);
+        expect(validation("9dfg*d")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 capital)/);
+
+        expect(validation("9dfgd6")).toMatch(/(8 characters).*\n.*(1 capital).*\n.*(1 special character)/);
+        expect(validation("sd6f5vc")).toMatch(/(8 characters).*\n.*(1 capital).*\n.*(1 special character)/);
+
+        expect(validation("9dfHd")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 special character)/);
+        expect(validation("ADF5gp")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 special character)/);
+
+        expect(validation("9dfdggd")).toMatch(/(2 numbers).*\n.*(1 capital).*\n.*(1 special character)/);
+        expect(validation("mcturtylk")).toMatch(/(2 numbers).*\n.*(1 capital).*\n.*(1 special character)/);
+
+        expect(validation("ytryt5vxcv9")).toMatch(/(1 capital).*\n.*(1 special character)/);
+        expect(validation("eynrhnfg95")).toMatch(/(1 capital).*\n.*(1 special character)/);
+
+        expect(validation("45GHFs")).toMatch(/(8 characters).*\n.*(1 special character)/);
+        expect(validation("sf8FG29")).toMatch(/(8 characters).*\n.*(1 special character)/);
+
+        expect(validation("9dfgdDFSf")).toMatch(/(2 numbers).*\n.*(1 special character)/);
+        expect(validation("GD5gegTYP")).toMatch(/(2 numbers).*\n.*(1 special character)/);
+        
+        expect(validation("fgjd")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 capital).*\n.*(1 special character)/);
+        expect(validation("9dfgd")).toMatch(/(8 characters).*\n.*(2 numbers).*\n.*(1 capital).*\n.*(1 special character)/);
+    });
 });
