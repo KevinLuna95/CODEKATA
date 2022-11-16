@@ -65,7 +65,7 @@ Kata 3 – Password input field validation /password.js and /password.test.js
 
     5. The password must contain at least one special character. If it is not met, then the following error message should be returned: “password must contain at least one special character”
 
-Kata 4 – Search functionality
+Kata 4 – Search functionality /searchCity.js and searchCity.test.js
     Implement a city search functionality. The function takes a string (search text) as input and returns the found cities which corresponds to the search text.
 
     Prerequisites

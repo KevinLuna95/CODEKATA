@@ -10,4 +10,11 @@ describe('searchCity is a function that allows to find the name of the city', ()
         expect(searchCity("as")).not.toEqual(Error("Write 2 or more characrters for find the city"));
         expect(searchCity("as")).not.toEqual(Error("Write 2 or more characrters for find the city"));
     });
+
+    it('If the search text is equal to or more than 2 characters, then it should return all the city names starting with the exact search text', ()=> {
+        expect(searchCity("Pa")).toBe("Paris");
+        expect(searchCity("Bu")).toEqual("Budapest");
+        expect(searchCity("Ho")).toEqual("Hong Kong");
+        expect(searchCity("Ba")).toEqual("Bangkok");
+    });
 });
