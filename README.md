@@ -50,7 +50,7 @@ Hi! I'm Kevin Luna and this is my code Kata, here I want to show you + 20 test p
     “//sep\n2sep5” should return “7”
     “//|\n1|2,3” is invalid and should return an error (or throw an exception) with the message “‘|’ expected but ‘,’ found at position 3.”
 
-Kata 3 – Password input field validation
+Kata 3 – Password input field validation /password.js and /password.test.js
     Create a function that can be used as a validator for the password field of a user registration form. The validation function takes a string as an input and returns a validation result. The validation result should contain a boolean indicating if the password is valid or not, and also a field with the possible validation errors.
 
     Requirements
@@ -65,3 +65,23 @@ Kata 3 – Password input field validation
 
     5. The password must contain at least one special character. If it is not met, then the following error message should be returned: “password must contain at least one special character”
 
+Kata 4 – Search functionality
+    Implement a city search functionality. The function takes a string (search text) as input and returns the found cities which corresponds to the search text.
+
+    Prerequisites
+    Create a collection of strings that will act as a database for the city names.
+
+    City names: Paris, Budapest, Skopje, Rotterdam, Valencia, Vancouver, Amsterdam, Vienna, Sydney, New York City, London, Bangkok, Hong Kong, Dubai, Rome, Istanbul
+
+    Requirements
+    1. If the search text is fewer than 2 characters, then should return no results. (It is an optimization feature of the search functionality.)
+
+    2. If the search text is equal to or more than 2 characters, then it should return all the city names starting with the exact search text.
+
+    For example for search text “Va”, the function should return Valencia and Vancouver
+    3. The search functionality should be case insensitive
+
+    4. The search functionality should work also when the search text is just a part of a city name
+
+    For example “ape” should return “Budapest” city
+    5. If the search text is a “*” (asterisk), then it should return all the city names.
