@@ -7,18 +7,14 @@ function searchCity (text){
     }
     var element
     var res = "";
-    var myRe = new RegExp(text,'g');
+    var myRe = new RegExp( text,'gi');
     for (let i = 0; i < cityNames.length; i++) {
         element = cityNames[i];
         if ((myArray = myRe.exec(element)) !== null) {
-            if (res == ""){
-                res = `${element}`
-            } else{
-                res = `${res} ${element}`
-            };
+            res = `${element}`
         };
     };
     return res;
 };
-searchCity("da");
+
 module.exports.searchCity = searchCity;
